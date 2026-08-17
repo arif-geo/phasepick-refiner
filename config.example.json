@@ -1,0 +1,83 @@
+{
+  "inputs": {
+    "pick_file": "example/picks.csv",
+    "catalog_file": "example/catalog.csv",
+    "cluster_file": "example/clusters.json",
+    "waveform_directory": "example/waveforms",
+    "station_file": "example/stations.csv"
+  },
+  "columns": {
+    "picks": {
+      "event_id": "event_id",
+      "station_id": "station_id",
+      "p_pick_time": "phase_time_p",
+      "s_pick_time": "phase_time_s",
+      "p_score": "phase_score_p",
+      "s_score": "phase_score_s",
+      "snr": "snr",
+      "waveform_filename": "file_name"
+    },
+    "catalog": {
+      "event_id": "event_id",
+      "origin_time": "origin_time",
+      "latitude": "latitude",
+      "longitude": "longitude",
+      "depth": "depth",
+      "magnitude": "magnitude"
+    },
+    "stations": {
+      "network": "network",
+      "station": "station",
+      "latitude": "latitude",
+      "longitude": "longitude",
+      "elevation": "elevation"
+    }
+  },
+  "waveforms": {
+    "file_glob": "*.mseed",
+    "event_id_separator": "_",
+    "stream_cache_size": 4
+  },
+  "master_selection": {
+    "minimum_pick_pairs": 2,
+    "snr_weight": 0.25,
+    "sp_template_tolerance_seconds": 0.75,
+    "allow_single_high_confidence_pair": true,
+    "single_pair_minimum_p_score": 0.7,
+    "single_pair_minimum_s_score": 0.5,
+    "single_pair_minimum_snr": 5.0
+  },
+  "correlation": {
+    "cc_threshold": 0.7,
+    "filter_frequency_hz": [2.0, 10.0],
+    "p_template_window_seconds": [-1.0, 1.0],
+    "s_template_window_seconds": [-1.0, 2.0],
+    "search_half_width_seconds": 1.0,
+    "sp_acceptance_tolerance_seconds": 0.75,
+    "include_master_in_cc": false
+  },
+  "viewer": {
+    "x_limits_seconds": [0.0, 30.0],
+    "stations_per_page": 5,
+    "default_gain": 1.0,
+    "taup_model": "iasp91"
+  },
+  "output": {
+    "directory": "example/output",
+    "refined_pick_filename": "phasepicks_refined.csv",
+    "provenance_filename": "phasepicks_refined_sources.csv",
+    "master_filename": "master_selections.csv",
+    "attempt_filename": "cc_attempts.csv",
+    "report_directory_name": "report",
+    "output_time_format": "%Y-%m-%d %H:%M:%S.%f+00:00",
+    "event_level_columns_for_new_rows": [
+      "event_idx",
+      "event_id",
+      "file_name"
+    ]
+  },
+  "run": {
+    "selected_cluster_ids": [],
+    "maximum_clusters": null
+  }
+}

@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.pytest_cache/
+.coverage
+build/
+dist/
+*.egg-info/
+
+# Local paths and generated scientific products should not be committed.
+config.local.json
+local_output/
+example/output/
+inputs/
+waveforms/
+outputs/
